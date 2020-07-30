@@ -10,7 +10,7 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
         if (x <= coordinatesX || x < 0) {
             throw new Error('Wrong x coordinates')
         }
-        if (y <= coordinatesY || y < 0) {
+        if (y < coordinatesY || y < 0) {
             throw new Error('Wrong y coordinates')
         }
     })()
@@ -18,10 +18,10 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
     for (let i = 0; i <= generations; i++) {
         let newGeneration = [];
 
-        for (let row = 0; row < x; row++) {
+        for (let row = 0; row < y; row++) {
             let temp = [];
 
-            for (let col = 0; col < y; col++) {
+            for (let col = 0; col < x; col++) {
                 let current = +currentGeneration[row][col];
                 let green = 0;
 
@@ -42,7 +42,7 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                     neighbors.botLeft = currentGeneration[row + 1][col - 1];
                     neighbors.botMid = currentGeneration[row + 1][col];
                     neighbors.botRight = currentGeneration[row + 1][col + 1];
-                } else if (row === x - 1) {
+                } else if (row === y - 1) {
                     neighbors.topLeft = currentGeneration[row - 1][col - 1];
                     neighbors.topMid = currentGeneration[row - 1][col];
                     neighbors.topRight = currentGeneration[row - 1][col + 1];
@@ -93,15 +93,15 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
             count++
         }
 
+        console.log(currentGeneration);
+
         currentGeneration = JSON.parse(JSON.stringify(newGeneration));
+        console.log(`=================End of generation${i}`);
     } // end of generation
 
     console.log(count);
 }
 
-solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10); // Test Input 1
-console.log(`------`);
-solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15); // Test Input 2
 
 function redToGreen(greenCount) {
     //if red cell is surrounded by exactly 3 or 6 green cells becomes green;
@@ -129,3 +129,11 @@ function greenToRed(greenCount) {
     }
 
 }
+
+solveMatrix([['0', '0', '0', '0'], ['1', '1', '1', '1'], ['1', '1', '1', '1']], 4, 3, [2, 3], 5); // My Test Input 1
+console.log(`------`);
+
+solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10); // Test Input 1
+
+console.log(`------`);
+solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15); // Test Input 2
