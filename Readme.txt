@@ -10,4 +10,4 @@
 6. Assign newGeneration to be currentGeneration;
 7. Print the result;
 
-// I made the game in the browser. You can check it in the Browser-Game folder;
+// I made the game in the browser. You can check it in the Browser-Game folder or here https://brglz.github.io/Red-Green-Game/
