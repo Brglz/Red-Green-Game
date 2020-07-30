@@ -5,10 +5,9 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
     //green - 1
     //red - 0
     let currentGeneration = matrix;
-
-
     let count = 0;
-    for (let i = 1; i <= generations; i++) {
+
+    for (let i = 0; i <= generations; i++) {
         let newGeneration = [];
 
         for (let row = 0; row < x; row++) {
@@ -70,12 +69,13 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                 }
 
 
+
                 if (current === 0) { //red = 0
                     if (redToGreen(green)) {
                         // console.log(`[${row}, ${col}] changing color`);
-                        if (row === coordinatesX && col === coordinatesY) {
-                            count++
-                        }
+                        // if (row === coordinatesX && col === coordinatesY) {
+                        //     count++
+                        // }
                         temp.push(1);
                     } else {
                         console.log(`[${row}, ${col}] is NOT changing color`);
@@ -99,6 +99,9 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
 
         } // end of big loop
 
+        if (currentGeneration[coordinatesX][coordinatesY] === 1) {
+            count++
+        }
         console.log(currentGeneration);
         console.log(newGeneration);
         currentGeneration = JSON.parse(JSON.stringify(newGeneration));;
@@ -108,21 +111,9 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
     console.log(count);
 }
 
-// solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10);
+solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10);
+console.log(`-------------------------------------------------------------------------------------------------------------------------}`);
 solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 function redToGreen(greenCount) {
     //if red cell is surrounded by exactly 3 or 6 green cells becomes green;
