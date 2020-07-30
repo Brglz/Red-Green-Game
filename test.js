@@ -6,6 +6,15 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
 
     let count = 0;
 
+    (function validatePoint() {
+        if (x <= coordinatesX || x < 0) {
+            throw new Error('Wrong x coordinates')
+        }
+        if (y <= coordinatesY || y < 0) {
+            throw new Error('Wrong y coordinates')
+        }
+    })()
+
     for (let i = 0; i <= generations; i++) {
         let newGeneration = [];
 
