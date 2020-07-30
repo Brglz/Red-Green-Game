@@ -50,5 +50,6 @@ button {
     body{
         margin: 40px;
         flex-direction: column;
+        overflow: hidden;
     }
 }
