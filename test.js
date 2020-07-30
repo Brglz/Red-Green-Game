@@ -35,17 +35,12 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                     neighbors.botLeft = currentGeneration[row + 1][col - 1];
                     neighbors.botMid = currentGeneration[row + 1][col];
                     neighbors.botRight = currentGeneration[row + 1][col + 1];
-                    // console.log(neighbors);
-
                 } else if (row === x - 1) {
                     neighbors.topLeft = currentGeneration[row - 1][col - 1];
                     neighbors.topMid = currentGeneration[row - 1][col];
                     neighbors.topRight = currentGeneration[row - 1][col + 1];
                     neighbors.midLeft = currentGeneration[row][col - 1];
                     neighbors.midRight = currentGeneration[row][col + 1];
-
-                    // console.log(neighbors);
-
                 } else {
                     neighbors.topLeft = currentGeneration[row - 1][col - 1];
                     neighbors.topMid = currentGeneration[row - 1][col];
@@ -55,8 +50,6 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                     neighbors.botLeft = currentGeneration[row + 1][col - 1];
                     neighbors.botMid = currentGeneration[row + 1][col];
                     neighbors.botRight = currentGeneration[row + 1][col + 1];
-                    // console.log(neighbors);
-
                 }
 
                 for (const line in neighbors) {
@@ -68,27 +61,18 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                     }
                 }
 
-
-
                 if (current === 0) { //red = 0
                     if (redToGreen(green)) {
-                        // console.log(`[${row}, ${col}] changing color`);
-                        // if (row === coordinatesX && col === coordinatesY) {
-                        //     count++
-                        // }
                         temp.push(1);
                     } else {
-                        console.log(`[${row}, ${col}] is NOT changing color`);
                         temp.push(0)
                     }
                 }
                 else if (current === 1) {
                     if (greenToRed(green)) { //green = 1
                         temp.push(0)
-                        console.log(`[${row}, ${col}] changing color`);
 
                     } else {
-                        console.log(`[${row}, ${col}] is NOT changing color`);
                         temp.push(1)
                     }
                 }
@@ -102,18 +86,16 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
         if (currentGeneration[coordinatesX][coordinatesY] === 1) {
             count++
         }
-        console.log(currentGeneration);
-        console.log(newGeneration);
+
         currentGeneration = JSON.parse(JSON.stringify(newGeneration));;
-        console.log(`=================End of generation${i}`);
     } // end of generation
 
     console.log(count);
 }
 
-solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10);
-console.log(`-------------------------------------------------------------------------------------------------------------------------}`);
-solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15);
+solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10); // test 1
+console.log(`------`);
+solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15); // test 2
 
 function redToGreen(greenCount) {
     //if red cell is surrounded by exactly 3 or 6 green cells becomes green;
