@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./Browser-Game/style.css">
+
+    <title>Red and Green Game</title>
+</head>
+
+<body>
+    <div class="input">
+        <div>
+            <label class="labels" for="inputX">Width:</label>
+            <input id="inputX" type="number" name="inputX" placeholder="3">
+        </div>
+        <div>
+            <label class="labels" for="inputY">Height:</label>
+            <input id="inputY" type="number" name="inputY" placeholder="3">
+        </div>
+        <div>
+            <label class="labels" for="matrix">Matrix:</label>
+            <input id="matrix" type="text" placeholder='000111000' name="matrix">
+        </div>
+        <div>
+            <label class="labels" for="coordinates">Coordinates:</label>
+            <input id="coordinates" type="text" placeholder='1,0' name="coordinates">
+        </div>
+        <div>
+            <label class="labels" for="generations">Generations:</label>
+            <input id="generations" type="number" placeholder='10' name="generations">
+        </div>
+        <button id="userInput">Test with your input</button>
+        <p>Your score is: <span class="hidden" id="output"></span></p>
+    </div>
+    <div class="canvas-div">
+        <canvas id="myCanvas" width="600" height="600"></canvas>
+    </div>
+    <script type='module' src="./Browser-Game/logic.js"></script>
+    <script type='module' src="./Browser-Game/userInteractions.js"></script>
+</body>
+
+</html>
