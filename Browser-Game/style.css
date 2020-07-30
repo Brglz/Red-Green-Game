@@ -45,3 +45,9 @@ button {
     display: flex;
     flex-direction: column;    
 }
+
+@media only screen and (max-width: 884px){
+    body{
+        flex-direction: column;
+    }
+}
