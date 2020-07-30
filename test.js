@@ -1,10 +1,9 @@
 function solveMatrix(matrix, x, y, coordinates, generations) {
 
-    const coordinatesX = coordinates[0];
-    const coordinatesY = coordinates[1];
-    //green - 1
-    //red - 0
-    let currentGeneration = matrix;
+    const [coordinatesX, coordinatesY] = coordinates;
+
+    let currentGeneration = JSON.parse(JSON.stringify(matrix));
+
     let count = 0;
 
     for (let i = 0; i <= generations; i++) {
@@ -14,7 +13,6 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
             let temp = [];
 
             for (let col = 0; col < y; col++) {
-
                 let current = +currentGeneration[row][col];
                 let green = 0;
 
@@ -68,10 +66,9 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                         temp.push(0)
                     }
                 }
-                else if (current === 1) {
-                    if (greenToRed(green)) { //green = 1
+                else if (current === 1) { //green = 1
+                    if (greenToRed(green)) {
                         temp.push(0)
-
                     } else {
                         temp.push(1)
                     }
@@ -87,15 +84,15 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
             count++
         }
 
-        currentGeneration = JSON.parse(JSON.stringify(newGeneration));;
+        currentGeneration = JSON.parse(JSON.stringify(newGeneration));
     } // end of generation
 
     console.log(count);
 }
 
-solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10); // test 1
+solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10); // Test Input 1
 console.log(`------`);
-solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15); // test 2
+solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15); // Test Input 2
 
 function redToGreen(greenCount) {
     //if red cell is surrounded by exactly 3 or 6 green cells becomes green;
