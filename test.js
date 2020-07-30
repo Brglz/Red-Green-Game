@@ -4,19 +4,19 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
     const coordinatesY = coordinates[1];
     //green - 1
     //red - 0
-    let oldMatrix = matrix;
+    let currentGeneration = matrix;
 
 
     let count = 0;
-    for (let i = 1; i <= 10; i++) {
-        let newMatrix = [];
+    for (let i = 1; i <= generations; i++) {
+        let newGeneration = [];
 
         for (let row = 0; row < x; row++) {
             let temp = [];
 
             for (let col = 0; col < y; col++) {
 
-                let current = +oldMatrix[row][col];
+                let current = +currentGeneration[row][col];
                 let green = 0;
 
                 let neighbors = {
@@ -31,31 +31,31 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                 }
 
                 if (row === 0) {
-                    neighbors.midLeft = oldMatrix[row][col - 1];
-                    neighbors.midRight = oldMatrix[row][col + 1];
-                    neighbors.botLeft = oldMatrix[row + 1][col - 1];
-                    neighbors.botMid = oldMatrix[row + 1][col];
-                    neighbors.botRight = oldMatrix[row + 1][col + 1];
+                    neighbors.midLeft = currentGeneration[row][col - 1];
+                    neighbors.midRight = currentGeneration[row][col + 1];
+                    neighbors.botLeft = currentGeneration[row + 1][col - 1];
+                    neighbors.botMid = currentGeneration[row + 1][col];
+                    neighbors.botRight = currentGeneration[row + 1][col + 1];
                     // console.log(neighbors);
 
                 } else if (row === x - 1) {
-                    neighbors.topLeft = oldMatrix[row - 1][col - 1];
-                    neighbors.topMid = oldMatrix[row - 1][col];
-                    neighbors.topRight = oldMatrix[row - 1][col + 1];
-                    neighbors.midLeft = oldMatrix[row][col - 1];
-                    neighbors.midRight = oldMatrix[row][col + 1];
+                    neighbors.topLeft = currentGeneration[row - 1][col - 1];
+                    neighbors.topMid = currentGeneration[row - 1][col];
+                    neighbors.topRight = currentGeneration[row - 1][col + 1];
+                    neighbors.midLeft = currentGeneration[row][col - 1];
+                    neighbors.midRight = currentGeneration[row][col + 1];
 
                     // console.log(neighbors);
 
                 } else {
-                    neighbors.topLeft = oldMatrix[row - 1][col - 1];
-                    neighbors.topMid = oldMatrix[row + 1][col];
-                    neighbors.topRight = oldMatrix[row + 1][col + 1];
-                    neighbors.midLeft = oldMatrix[row][col - 1];
-                    neighbors.midRight = oldMatrix[row][col + 1];
-                    neighbors.botLeft = oldMatrix[row + 1][col - 1];
-                    neighbors.botMid = oldMatrix[row + 1][col];
-                    neighbors.botRight = oldMatrix[row + 1][col + 1];
+                    neighbors.topLeft = currentGeneration[row - 1][col - 1];
+                    neighbors.topMid = currentGeneration[row - 1][col];
+                    neighbors.topRight = currentGeneration[row - 1][col + 1];
+                    neighbors.midLeft = currentGeneration[row][col - 1];
+                    neighbors.midRight = currentGeneration[row][col + 1];
+                    neighbors.botLeft = currentGeneration[row + 1][col - 1];
+                    neighbors.botMid = currentGeneration[row + 1][col];
+                    neighbors.botRight = currentGeneration[row + 1][col + 1];
                     // console.log(neighbors);
 
                 }
@@ -77,7 +77,6 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                             count++
                         }
                         temp.push(1);
-
                     } else {
                         console.log(`[${row}, ${col}] is NOT changing color`);
                         temp.push(0)
@@ -85,7 +84,6 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
                 }
                 else if (current === 1) {
                     if (greenToRed(green)) { //green = 1
-
                         temp.push(0)
                         console.log(`[${row}, ${col}] changing color`);
 
@@ -97,21 +95,21 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
 
             } //end of small loop
 
-            newMatrix.push(temp)
+            newGeneration.push(temp)
 
         } // end of big loop
 
-        console.log(oldMatrix);
-        console.log(newMatrix);
-        oldMatrix = JSON.parse(JSON.stringify(newMatrix));;
+        console.log(currentGeneration);
+        console.log(newGeneration);
+        currentGeneration = JSON.parse(JSON.stringify(newGeneration));;
         console.log(`=================End of generation${i}`);
     } // end of generation
 
     console.log(count);
 }
 
-solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10);
-// solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15);
+// solveMatrix([['0', '0', '0'], ['1', '1', '1'], ['0', '0', '0']], 3, 3, [1, 0], 10);
+solveMatrix([['1', '0', '0', '1'], ['1', '1', '1', '1'], ['0', '1', '0', '0'], ['1', '0', '1', '0']], 4, 4, [2, 2], 15);
 
 
 
