@@ -93,13 +93,13 @@ function solveMatrix(matrix, x, y, coordinates, generations) {
             count++
         }
 
-        console.log(currentGeneration);
+        // console.log(currentGeneration);
 
         currentGeneration = JSON.parse(JSON.stringify(newGeneration));
-        console.log(`=================End of generation${i}`);
+        // console.log(`=================End of generation${i}`);
     } // end of generation
 
-    console.log(count);
+    console.log(`Your score is: ${count}`);
 }
 
 
