@@ -1,5 +1,7 @@
 Simple game with a matrix.
 
+Check the assigment for more information.
+
 // PLAN for Red and Green Game - console application
 
 1. Read and validate input data;
